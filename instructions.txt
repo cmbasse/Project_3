@@ -1,5 +1,4 @@
-https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-init
-
+https://www.atlassian.com/git/tutorials/syncing
 git add
 git commit
     ctrl + x
