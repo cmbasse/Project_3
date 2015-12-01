@@ -26,3 +26,6 @@ git rm {filename.extension}
 --------Final Thought--------
 If two people are working on the same file and both commit the same file both versions will be saved
 however they wont merge together into the samefile. So cordiante what you are working on.
+
+--------README Styling Info--------
+http://assemble.io/docs/Cheatsheet-Markdown.html
