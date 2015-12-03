@@ -44,6 +44,7 @@ void LinkedList::insert(std::string key, int value, int x, int y, std::string di
         }
         length += 1;
     }
+    limitSize();
 }
 void LinkedList::rmove(std::string key){
     bool found = false;
@@ -142,4 +143,17 @@ LinkedList::~LinkedList(){
         }
         delete me;
     }
+}
+
+
+void LinkedList::limitSize(){
+    if(length > maxLen){
+        node *tail = (node *) last;
+        node *newTail = (node *) tail->getLast();
+        newTail->setNext(0);
+        last = (int *) newTail;
+        delete tail;
+        length = maxLen;
+    }
+    
 }

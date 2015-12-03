@@ -23,6 +23,8 @@ public:
 
     ~LinkedList();
 private:
+    void limitSize();
+    int maxLen = 20;
     int* first;
     int* last;
     int length = 0;
