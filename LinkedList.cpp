@@ -46,6 +46,9 @@ void LinkedList::insert(std::string key, int value, int x, int y, std::string di
     }
     limitSize();
 }
+void LinkedList::insert(node* inNode){
+    insert(inNode->getKey(), inNode->getValue(), inNode->getX(), inNode->getY(), inNode->getDirection());
+}
 void LinkedList::rmove(std::string key){
     bool found = false;
     node *me = (node *) first;
@@ -130,6 +133,9 @@ bool LinkedList::is_empty(){
     }else{
         return true;
     }
+}
+node* LinkedList::best_move(){
+    return (node *) first;
 }
 
 LinkedList::~LinkedList(){

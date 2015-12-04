@@ -12,14 +12,16 @@ class LinkedList{
 
 public:
     LinkedList();
-
+    
     void insert(std::string key, int value, int x, int y, std::string direction);
+    void insert(node* inNode);
     void rmove(std::string key);
     void toString();
 
     bool is_in(std::string key);
     int size();
     bool is_empty();
+    node* best_move();
 
     ~LinkedList();
 private:

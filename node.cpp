@@ -19,13 +19,13 @@ void node::setKey(std::string key){
 void node::setValue(int value){
     this->value = value;
 }
-void setX(int x){
+void node::setX(int x){
     this->x = x;
 }
-void setY(int y){
+void node::setY(int y){
     this->y = y;
 }
-void setDriection(std::string direction){
+void node::setDriection(std::string direction){
     this->direction = direction;
 }
 void node::setNext(int* next){
@@ -36,7 +36,7 @@ void node::setLast(int* last){
 }
 
 void node::toString(){
-    std::cout << "KEY: " << key << " VALUE: " << value << std::endl;
+    std::cout << "KEY: " << key << " VALUE: " << value << " LOCATION: (" << x << "," << y << ") DIRECTION: " << direction << std::endl;
 }
 
 std::string node::getKey() {
