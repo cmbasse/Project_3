@@ -33,5 +33,4 @@ class Board{
     ~Board();
     isEmpty();
     Move* findMoves();
-    }
 }
