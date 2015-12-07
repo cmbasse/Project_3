@@ -435,12 +435,7 @@ class Board{
         Move move;
         bool shouldDouble;
         bool shouldTriple;
-        if (m.score == -1){
-           move = m;
-        return move;
-        }
-        else {
-            for (int j = m.y, i = m.x, k = 0; j < m.y + m.wordSoFar.size(); j++, k++){
+        for (int j = m.y, i = m.x, k = 0; j < m.y + m.wordSoFar.size(); j++, k++){
                 if (board[i][j].theChar >= 97 &&
                 board[i][j].theChar <= 122){
                     if (board[i][j].wordProp == 2){
@@ -463,9 +458,6 @@ class Board{
                 m.score = m.score * 3;
             }
             move = m;
-        return move;
-        }
-        move = m;
         return move;
     }
     
@@ -473,12 +465,7 @@ class Board{
         Move move;
         bool shouldDouble;
         bool shouldTriple;
-        if (m.score == -1){
-            move = m;
-        return move;
-        }
-        else {
-            for (int i = m.x, j = m.y, k = 0; i < m.x + m.wordSoFar.size(); i++, k++){
+        for (int i = m.x, j = m.y, k = 0; i < m.x + m.wordSoFar.size(); i++, k++){
                 if (board[i][j].theChar >= 97 &&
                 board[i][j].theChar <= 122){
                     if (board[i][j].wordProp == 2){
@@ -502,21 +489,13 @@ class Board{
             }
             move = m;
             return move;
-        }
-        move = m;
-        return move;
     }
     
     Move checkCrossesAcc(Move m, map<char,int> map){
         Move move;
         bool shouldDouble;
         bool shouldTriple;
-        if (m.score == -1){
-            move = m;
-            return move;
-        }
-        else {
-            m.score = 0;
+        m.score = 0;
             for (int j = m.y, i = m.x, k = 0 ; j < m.y + m.wordSoFar.size(); j++, k++){
             string newWord = "";
             while (i >= 0 && (board[i][j].theChar >= 97 &&
@@ -550,21 +529,13 @@ class Board{
                 return move;
             }
             }
-        }
-        move = m;
-        return move;
     }
     
     Move checkCrossesDown(Move m, map<char,int> map){
         Move move;
         bool shouldDouble;
         bool shouldTriple;
-        if (m.score == -1){
-            move = m;
-            return move;
-        }
-        else {
-            m.score = 0;
+       m.score = 0;
             for (int j = m.y, i = m.x, k = 0; i < m.x + m.wordSoFar.size(); i++, k++){
             string newWord = "";
             while (j >= 0 && (board[i][j].theChar >= 97 &&
@@ -598,9 +569,6 @@ class Board{
                 return move;
             }
             }
-        }
-        move = m;
-        return move;
     }
     
     
@@ -721,7 +689,7 @@ letter_value['*'] = 0;
                 if (m.score == -1){
                     continue;
                 }
-                cout << "across" << m.score << endl;
+                //cout << "across" << m.score << endl;
                 //cout << "across" << m.score << endl;
                 m = b.checkCrossesAcc(m, letter_value);
                 //cout << "across" << m.score << endl;
@@ -765,17 +733,17 @@ letter_value['*'] = 0;
                 if (mv.score == -1){
                     continue;
                 }
-                cout << "mv.score " << mv.score << endl;
+                //cout << "mv.score " << mv.score << endl;
                 mv = b.checkCrossesDown(mv, letter_value);
                 //cout << "mv.score " << mv.score << endl;
                 mv = b.findScoreDown(mv, letter_value);
                 //cout << "mv.score " << mv.score << endl;
                 if (mv.score != -1){
-                    cout << "mv.wordSoFar " << mv.wordSoFar << endl;
-                    cout << "mv.score " << mv.score << endl;
-                    cout << "mv.x " << mv.x << endl;
-                    cout << "mv.y " << mv.y << endl;
-                    cout << "mv.direction " << mv.direction << endl;
+                    //cout << "mv.wordSoFar " << mv.wordSoFar << endl;
+                    //cout << "mv.score " << mv.score << endl;
+                    //cout << "mv.x " << mv.x << endl;
+                    //cout << "mv.y " << mv.y << endl;
+                    //cout << "mv.direction " << mv.direction << endl;
                     ll.insert(mv.wordSoFar, mv.score, mv.x, mv.y, mv.direction);
                 }
         }
@@ -791,7 +759,7 @@ letter_value['*'] = 0;
         }
         
     }
-    //ll.toString();
+    ll.toString();
     
     cout << "hey" << endl;
     //b.findMoves(answer);
