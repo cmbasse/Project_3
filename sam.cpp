@@ -435,6 +435,11 @@ class Board{
         Move move;
         bool shouldDouble;
         bool shouldTriple;
+        if (m.score == -1){
+            move = m;
+            return move;
+        }
+        m.score = 0;
         for (int j = m.y, i = m.x, k = 0; j < m.y + m.wordSoFar.size(); j++, k++){
                 if (board[i][j].wordProp == 2){
                         shouldDouble = true;
@@ -463,6 +468,11 @@ class Board{
         Move move;
         bool shouldDouble;
         bool shouldTriple;
+        if (m.score == -1){
+            move = m;
+            return move;
+        }
+        m.score = 0;
         for (int i = m.x, j = m.y, k = 0; i < m.x + m.wordSoFar.size(); i++, k++){
                     if (board[i][j].wordProp == 2){
                         shouldDouble = true;
@@ -690,7 +700,7 @@ letter_value['*'] = 0;
                 }
                 //cout << "across" << m.score << endl;
                 //cout << "across" << m.score << endl;
-                m = b.checkCrossesAcc(m, letter_value);
+                //m = b.checkCrossesAcc(m, letter_value);
                 //cout << "across" << m.score << endl;
                 m = b.findScoreAcross(m, letter_value);
                 //cout << "across" << m.score << endl;
@@ -733,7 +743,7 @@ letter_value['*'] = 0;
                     continue;
                 }
                 //cout << "mv.score " << mv.score << endl;
-                mv = b.checkCrossesDown(mv, letter_value);
+                //mv = b.checkCrossesDown(mv, letter_value);
                 //cout << "mv.score " << mv.score << endl;
                 mv = b.findScoreDown(mv, letter_value);
                 //cout << "mv.score " << mv.score << endl;
