@@ -432,13 +432,15 @@ class Board{
     }
     
     Move findScoreAcross(Move m, map<char,int> map){
+        Move move;
         bool shouldDouble;
         bool shouldTriple;
         if (m.score == -1){
-            return m;
+           move = m;
+        return move;
         }
         else {
-            for (int j = 0, i =0; j < m.wordSoFar.size(); j++){
+            for (int j = m.y, i = m.x, k = 0; j < m.y + m.wordSoFar.size(); j++, k++){
                 if (board[i][j].theChar >= 97 &&
                 board[i][j].theChar <= 122){
                     if (board[i][j].wordProp == 2){
@@ -450,7 +452,7 @@ class Board{
                     if (board[i][j].wordProp == 1){
                         
                     }
-                    m.score = m.score + (board[i][j].letterProp * map.find(board[i][j].theChar)->second);
+                    m.score = m.score + (board[i][j].letterProp * map.find(m.wordSoFar.at(k))->second);
                      
                 }
             }
@@ -460,18 +462,23 @@ class Board{
             if (shouldTriple == true){
                 m.score = m.score * 3;
             }
+            move = m;
+        return move;
         }
-        return m;
+        move = m;
+        return move;
     }
     
     Move findScoreDown(Move m, map<char,int> map){
+        Move move;
         bool shouldDouble;
         bool shouldTriple;
         if (m.score == -1){
-            return m;
+            move = m;
+        return move;
         }
         else {
-            for (int i = m.x, j = 0; i < m.wordSoFar.size(); i++){
+            for (int i = m.x, j = m.y, k = 0; i < m.x + m.wordSoFar.size(); i++, k++){
                 if (board[i][j].theChar >= 97 &&
                 board[i][j].theChar <= 122){
                     if (board[i][j].wordProp == 2){
@@ -483,7 +490,7 @@ class Board{
                     if (board[i][j].wordProp == 1){
                         
                     }
-                    m.score = m.score + (board[i][j].letterProp * map.find(board[i][j].theChar)->second);
+                    m.score = m.score + (board[i][j].letterProp * map.find(m.wordSoFar.at(k))->second);
                      
                 }
             }
@@ -493,19 +500,24 @@ class Board{
             if (shouldTriple == true){
                 m.score = m.score * 3;
             }
+            move = m;
+            return move;
         }
-        return m;
+        move = m;
+        return move;
     }
     
     Move checkCrossesAcc(Move m, map<char,int> map){
+        Move move;
         bool shouldDouble;
         bool shouldTriple;
         if (m.score == -1){
-            return m;
+            move = m;
+            return move;
         }
         else {
             m.score = 0;
-            for (int j = 0, i = m.x; j < m.wordSoFar.size(); j++){
+            for (int j = m.y, i = m.x, k = 0 ; j < m.y + m.wordSoFar.size(); j++, k++){
             string newWord = "";
             while (i >= 0 && (board[i][j].theChar >= 97 &&
                 board[i][j].theChar <= 122)){
@@ -514,7 +526,7 @@ class Board{
             while (i < 15 && (board[i][j].theChar >= 97 &&
                 board[i][j].theChar <= 122)){
                     newWord = newWord + board[i][j].theChar;
-                    m.score = m.score + (board[i][j].letterProp * map.find(board[i][j].theChar)->second);
+                    m.score = m.score + (board[i][j].letterProp * map.find(m.wordSoFar.at(k))->second);
                     if (board[i][j].wordProp == 2){
                         shouldDouble = true;
                     }
@@ -529,25 +541,31 @@ class Board{
                 if (shouldTriple == true){
                     m.score = m.score * 3;
                 }
+                move = m;
+                return move;
             }
             else {
                 m.score = -1;
-                return m;
+                move = m;
+                return move;
             }
             }
         }
-        return m;
+        move = m;
+        return move;
     }
     
     Move checkCrossesDown(Move m, map<char,int> map){
+        Move move;
         bool shouldDouble;
         bool shouldTriple;
         if (m.score == -1){
-            return m;
+            move = m;
+            return move;
         }
         else {
             m.score = 0;
-            for (int j = m.y, i = 0; i < m.wordSoFar.size(); i++){
+            for (int j = m.y, i = m.x, k = 0; i < m.x + m.wordSoFar.size(); i++, k++){
             string newWord = "";
             while (j >= 0 && (board[i][j].theChar >= 97 &&
                 board[i][j].theChar <= 122)){
@@ -556,7 +574,7 @@ class Board{
             while (j < 15 && (board[i][j].theChar >= 97 &&
                 board[i][j].theChar <= 122)){
                     newWord = newWord + board[i][j].theChar;
-                    m.score = m.score + (board[i][j].letterProp * map.find(board[i][j].theChar)->second);
+                    m.score = m.score + (board[i][j].letterProp * map.find(m.wordSoFar.at(k))->second);
                     if (board[i][j].wordProp == 2){
                         shouldDouble = true;
                     }
@@ -571,14 +589,18 @@ class Board{
                 if (shouldTriple == true){
                     m.score = m.score * 3;
                 }
+                move = m;
+            return move;
             }
             else {
                 m.score = -1;
-                return m;
+                move = m;
+                return move;
             }
             }
         }
-        return m;
+        move = m;
+        return move;
     }
     
     
@@ -696,11 +718,15 @@ letter_value['*'] = 0;
             b.theTrie.getRackWords(temp, b.rack, results);
             for(vector<string>::iterator it = results.begin(); it!= results.end(); it++){
                 Move m = b.isValid(answer, z, *it);
+                if (m.score == -1){
+                    continue;
+                }
                 cout << "across" << m.score << endl;
+                //cout << "across" << m.score << endl;
                 m = b.checkCrossesAcc(m, letter_value);
-                cout << "across" << m.score << endl;
+                //cout << "across" << m.score << endl;
                 m = b.findScoreAcross(m, letter_value);
-                cout << "across" << m.score << endl;
+                //cout << "across" << m.score << endl;
                 if (m.score != -1){
                     ll.insert(m.wordSoFar, m.score, m.x, m.y, m.direction);
                 }
@@ -736,11 +762,14 @@ letter_value['*'] = 0;
             b.theTrie.getRackWords(temp, b.rack, results);
             for(vector<string>::iterator it = results.begin(); it!= results.end(); it++){
                 Move mv = b.isValid(answers, y, *it);
+                if (mv.score == -1){
+                    continue;
+                }
                 cout << "mv.score " << mv.score << endl;
                 mv = b.checkCrossesDown(mv, letter_value);
-                cout << "mv.score " << mv.score << endl;
+                //cout << "mv.score " << mv.score << endl;
                 mv = b.findScoreDown(mv, letter_value);
-                cout << "mv.score " << mv.score << endl;
+                //cout << "mv.score " << mv.score << endl;
                 if (mv.score != -1){
                     cout << "mv.wordSoFar " << mv.wordSoFar << endl;
                     cout << "mv.score " << mv.score << endl;
