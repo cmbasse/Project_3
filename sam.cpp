@@ -436,9 +436,7 @@ class Board{
         bool shouldDouble;
         bool shouldTriple;
         for (int j = m.y, i = m.x, k = 0; j < m.y + m.wordSoFar.size(); j++, k++){
-                if (board[i][j].theChar >= 97 &&
-                board[i][j].theChar <= 122){
-                    if (board[i][j].wordProp == 2){
+                if (board[i][j].wordProp == 2){
                         shouldDouble = true;
                     }
                     if (board[i][j].wordProp == 3){
@@ -450,7 +448,7 @@ class Board{
                     m.score = m.score + (board[i][j].letterProp * map.find(m.wordSoFar.at(k))->second);
                      
                 }
-            }
+            
             if (shouldDouble == true){
                 m.score = m.score * 2;
             }
@@ -466,8 +464,6 @@ class Board{
         bool shouldDouble;
         bool shouldTriple;
         for (int i = m.x, j = m.y, k = 0; i < m.x + m.wordSoFar.size(); i++, k++){
-                if (board[i][j].theChar >= 97 &&
-                board[i][j].theChar <= 122){
                     if (board[i][j].wordProp == 2){
                         shouldDouble = true;
                     }
@@ -480,7 +476,7 @@ class Board{
                     m.score = m.score + (board[i][j].letterProp * map.find(m.wordSoFar.at(k))->second);
                      
                 }
-            }
+            
             if (shouldDouble == true){
                 m.score = m.score * 2;
             }
@@ -502,16 +498,19 @@ class Board{
                 board[i][j].theChar <= 122)){
                 i--;
             }
+            int newVar = 0;
             while (i < 15 && (board[i][j].theChar >= 97 &&
                 board[i][j].theChar <= 122)){
                     newWord = newWord + board[i][j].theChar;
-                    m.score = m.score + (board[i][j].letterProp * map.find(m.wordSoFar.at(k))->second);
+                    m.score = m.score + (board[i][j].letterProp * map.find(newWord.at(newVar))->second);
                     if (board[i][j].wordProp == 2){
                         shouldDouble = true;
                     }
                     if (board[i][j].wordProp == 3){
                         shouldTriple = true;
                     }
+                    i++;
+                    newVar++;
                 }
             if (theTrie.hasWord(&*newWord.begin(), newWord.size())){
                 if (shouldDouble == true){
