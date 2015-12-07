@@ -431,11 +431,11 @@ class Board{
     return answer;
     }
     
-    void findScoreAcross(Move m, map<char,int> map){
+    Move findScoreAcross(Move m, map<char,int> map){
         bool shouldDouble;
         bool shouldTriple;
         if (m.score == -1){
-            return;
+            return m;
         }
         else {
             for (int j = 0, i =0; j < m.wordSoFar.size(); j++){
@@ -461,13 +461,14 @@ class Board{
                 m.score = m.score * 3;
             }
         }
+        return m;
     }
     
-    void findScoreDown(Move m, map<char,int> map){
+    Move findScoreDown(Move m, map<char,int> map){
         bool shouldDouble;
         bool shouldTriple;
         if (m.score == -1){
-            return;
+            return m;
         }
         else {
             for (int i = m.x, j = 0; i < m.wordSoFar.size(); i++){
@@ -493,13 +494,14 @@ class Board{
                 m.score = m.score * 3;
             }
         }
+        return m;
     }
     
-    void checkCrossesAcc(Move m, map<char,int> map){
+    Move checkCrossesAcc(Move m, map<char,int> map){
         bool shouldDouble;
         bool shouldTriple;
         if (m.score == -1){
-            return;
+            return m;
         }
         else {
             m.score = 0;
@@ -530,17 +532,18 @@ class Board{
             }
             else {
                 m.score = -1;
-                return;
+                return m;
             }
             }
         }
+        return m;
     }
     
-    void checkCrossesDown(Move m, map<char,int> map){
+    Move checkCrossesDown(Move m, map<char,int> map){
         bool shouldDouble;
         bool shouldTriple;
         if (m.score == -1){
-            return;
+            return m;
         }
         else {
             m.score = 0;
@@ -571,10 +574,11 @@ class Board{
             }
             else {
                 m.score = -1;
-                return;
+                return m;
             }
             }
         }
+        return m;
     }
     
     
@@ -692,8 +696,11 @@ letter_value['*'] = 0;
             b.theTrie.getRackWords(temp, b.rack, results);
             for(vector<string>::iterator it = results.begin(); it!= results.end(); it++){
                 Move m = b.isValid(answer, z, *it);
-                b.checkCrossesAcc(m, letter_value);
-                b.findScoreAcross(m, letter_value);
+                cout << "across" << m.score << endl;
+                m = b.checkCrossesAcc(m, letter_value);
+                cout << "across" << m.score << endl;
+                m = b.findScoreAcross(m, letter_value);
+                cout << "across" << m.score << endl;
                 if (m.score != -1){
                     ll.insert(m.wordSoFar, m.score, m.x, m.y, m.direction);
                 }
@@ -715,7 +722,7 @@ letter_value['*'] = 0;
         Move answers[50];
         int y = b.findMovesDown(answers, q);
         for (int r = 0; r < y; r++){
-            string t = answer[r].wordSoFar;
+            string t = answers[r].wordSoFar;
             for (int u = 0; u < t.size(); u++){
                 char ab = t.at(u);
                 if (b.rack.find(ab) == b.rack.end()){
@@ -728,9 +735,11 @@ letter_value['*'] = 0;
             vector<string> results;
             b.theTrie.getRackWords(temp, b.rack, results);
             for(vector<string>::iterator it = results.begin(); it!= results.end(); it++){
-                Move mv = b.isValid(answer, y, *it);
-                b.checkCrossesDown(mv, letter_value);
-                b.findScoreDown(mv, letter_value);
+                Move mv = b.isValid(answers, y, *it);
+                cout << "mv.score " << mv.score << endl;
+                mv = b.checkCrossesDown(mv, letter_value);
+                cout << "mv.score " << mv.score << endl;
+                mv = b.findScoreDown(mv, letter_value);
                 cout << "mv.score " << mv.score << endl;
                 if (mv.score != -1){
                     cout << "mv.wordSoFar " << mv.wordSoFar << endl;
