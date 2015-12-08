@@ -169,11 +169,15 @@ class Board{
         int prevSize;
         int index;
         for (int i = 0; i < size; i++){
+            if (word == input[i].wordSoFar){
+                answer.score = -1;
+                return answer;
+            }
             index = word.find(input[i].wordSoFar, prevIndex);
             if (answer.score < 0){
                 if (i != 0){
                     if (input[i].leftSpace <= index){
-                        cout << "WHAT UP" << endl;
+                        //cout << "WHAT UP" << endl;
                         answer.score = -1;
                         return answer;
                         
@@ -632,17 +636,17 @@ class Board{
             }
             //cout << newWord << endl;
             if (newWord.size() == 1){
-                cout << "heyyy" << endl;
+                //cout << "heyyy" << endl;
                 //m.score = m.score - temp;
                 continue;
             }
             else if (theTrie.hasWord(&*newWord.begin(), newWord.size())){
                 //cout << "hey " << m.score << endl;
                 if (shouldDouble == true){
-                    cout << m.score << endl;
+                    //cout << m.score << endl;
                     temp = temp * 2;
                     m.score = m.score + temp;
-                    cout << "here" << endl;
+                    //cout << "here" << endl;
                     //cout << m.score << endl;
                 }
                 else if (shouldTriple == true){
