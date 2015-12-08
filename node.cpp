@@ -36,10 +36,10 @@ void node::setLast(int* last){
 }
 
 void node::toString(){
-    std::cout << "KEY: " << key << " VALUE: " << value << " LOCATION: (" << x << "," << y << ") DIRECTION: " << direction << std::endl;
+    std::cout << "WORD: " << key << " SCORE: " << value << " LOCATION: (" << x << "," << y << ") DIRECTION: " << direction << std::endl;
 }
 
-std::string node::getKey() {
+std::string node::getKey(){
     return this->key;
 }
 int node::getValue(){
@@ -62,4 +62,19 @@ int* node::getLast(){
     return this->last;
 }
 
+bool node::equals(node*& rhs) {
+    bool answer = false;
+    if(this->getKey() == rhs->getKey()){
+        if(this->getValue() == rhs->getValue()){
+            if(this->getX() == rhs->getX()){
+                if(this->getY() == rhs->getY()){
+                    if(this->getDirection() == rhs->getDirection()){
+                        answer = true;
+                    }
+                }
+            }
+        }
+    }
+    return answer;
+}
 

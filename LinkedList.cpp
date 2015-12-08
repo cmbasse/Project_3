@@ -9,6 +9,8 @@ void LinkedList::insert(std::string key, int value, int x, int y, std::string di
         first = (int *) newNode;
         last = (int *) newNode;
         length = 1;
+    }else if(is_in(newNode)){
+        return;
     }else{
         node *me = (node *) first;
         bool found = false;
@@ -96,10 +98,8 @@ void LinkedList::toString(){
     }
     
     node *me = (node *) first;
-    int i = 0;
     while(!isEnd){
 
-        std::cout << "NODE: " << i << " ";
         me->toString();
 
         if (me->getNext() == 0){
@@ -107,18 +107,17 @@ void LinkedList::toString(){
         }else{
             me = (node *) me->getNext();
         }
-        i++;
     }
 }
 
-bool LinkedList::is_in(std::string key){
+bool LinkedList::is_in(node*& rhs){
     bool found = false;
     node *me = (node *) first;
     if(is_empty()){
         return false;
     }
     while(!found){
-        if (me->getKey() == key){
+        if (me->equals(rhs)){
             return true;
         }else{
             if (me->getNext() == 0){

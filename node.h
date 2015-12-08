@@ -30,7 +30,9 @@ public:
     std::string getDirection();
     int* getNext();
     int* getLast();
-
+    
+    bool equals(node*& rhs);
+    
 private:
     std::string key;
     int value;

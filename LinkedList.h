@@ -18,7 +18,7 @@ public:
     void rmove(std::string key);
     void toString();
 
-    bool is_in(std::string key);
+    bool is_in(node*& rhs);
     int size();
     bool is_empty();
     node* best_move();
