@@ -90,6 +90,11 @@ void LinkedList::rmove(std::string key){
 }
 void LinkedList::toString(){
     bool isEnd = false;
+    if (first == 0){
+        std::cout << "The List is Empty" << std::endl;
+        return;
+    }
+    
     node *me = (node *) first;
     int i = 0;
     while(!isEnd){

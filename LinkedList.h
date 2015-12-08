@@ -27,8 +27,8 @@ public:
 private:
     void limitSize();
     int maxLen = 20;
-    int* first;
-    int* last;
+    int* first = 0;
+    int* last = 0;
     int length = 0;
 };
 #endif //LINKED_LIST_H
