@@ -171,12 +171,14 @@ class Board{
         for (int i = 0; i < size; i++){
             index = word.find(input[i].wordSoFar, prevIndex);
             if (answer.score < 0){
-                // if (index == 0 && i != 0){
-                //     if (input[i].leftSpace == index){
-                //         answer.score = -1;
-                //         return answer;
-                //     }
-                // }
+                if (i != 0){
+                    if (input[i].leftSpace <= index){
+                        cout << "WHAT UP" << endl;
+                        answer.score = -1;
+                        return answer;
+                        
+                    }
+                }
                 if (index < word.size() && (index >= 0)){
                 if (input[i].leftSpace >= index &&
                 ((word.size() - 1) - (index + (input[i].wordSoFar.size() - 1))) < 
@@ -581,15 +583,15 @@ class Board{
                     //cout << m.score << endl;
                     if (board[newI][j].wordProp == 2){
                         shouldDouble = true;
-                        temp = temp * 2;
+                        //temp = temp * 2;
                     }
                     if (board[newI][j].wordProp == 3){
                         shouldTriple = true;
-                        temp = temp * 3;
+                        //temp = temp * 3;
                     }
                     newI++;
                     newVar++;
-                    m.score = m.score + temp;
+                    //m.score = m.score + temp;
                     continue;
                 }
                     else {
@@ -598,15 +600,15 @@ class Board{
                     //cout << m.score << endl;
                     if (board[newI][j].wordProp == 2){
                         shouldDouble = true;
-                        temp = temp * 2;
+                        //temp = temp * 2;
                     }
                     if (board[newI][j].wordProp == 3){
                         shouldTriple = true;
-                        temp = temp * 3;
+                        //temp = temp * 3;
                     }
                     newI++;
                     newVar++;
-                    m.score = m.score + temp;
+                    //m.score = m.score + temp;
                     continue;
                     }
                 }
@@ -630,19 +632,27 @@ class Board{
             }
             //cout << newWord << endl;
             if (newWord.size() == 1){
-                m.score = m.score - temp;
+                cout << "heyyy" << endl;
+                //m.score = m.score - temp;
                 continue;
             }
             else if (theTrie.hasWord(&*newWord.begin(), newWord.size())){
+                //cout << "hey " << m.score << endl;
                 if (shouldDouble == true){
+                    cout << m.score << endl;
                     temp = temp * 2;
                     m.score = m.score + temp;
+                    cout << "here" << endl;
                     //cout << m.score << endl;
                 }
-                if (shouldTriple == true){
+                else if (shouldTriple == true){
                     temp = temp * 3;
                     m.score = m.score + temp;
                     //cout << m.score << endl;
+                }
+                else {
+                    //cout << "here" << endl;
+                    m.score = m.score + temp;
                 }
                 continue;
             }
@@ -709,16 +719,16 @@ class Board{
                     //cout << m.score << endl;
                     if (board[i][newJ].wordProp == 2){
                         shouldDouble = true;
-                        temp = temp * 2;
+                        //temp = temp * 2;
                     }
                     if (board[i][newJ].wordProp == 3){
                         shouldTriple = true;
-                        temp = temp * 3;
+                        //temp = temp * 3;
                     }
                     newJ++;
                     newVar++;
                     
-                    m.score = m.score + temp;
+                    //m.score = m.score + temp;
                     continue;
                 }
                     else {
@@ -727,15 +737,15 @@ class Board{
                     //cout << m.score << endl;
                     if (board[i][newJ].wordProp == 2){
                         shouldDouble = true;
-                        temp = temp * 2;
+                        //temp = temp * 2;
                     }
                     if (board[i][newJ].wordProp == 3){
                         shouldTriple = true;
-                        temp = temp * 3;
+                        //temp = temp * 3;
                     }
                     newJ++;
                     newVar++;
-                    m.score = m.score + temp;
+                    //m.score = m.score + temp;
                     continue;
                     }
                 }
@@ -759,11 +769,12 @@ class Board{
             }
             //cout << newWord << endl;
             if (newWord.size() == 1){
-                m.score = m.score - temp;
+                //m.score = m.score - temp;
                 continue;
             }
             else if (theTrie.hasWord(&*newWord.begin(), newWord.size())){
                 if (shouldDouble == true){
+                    
                     temp = temp * 2;
                     m.score = m.score + temp;
                     //cout << m.score << endl;
@@ -772,6 +783,9 @@ class Board{
                     temp = temp * 3;
                     m.score = m.score + temp;
                     //cout << m.score << endl;
+                }
+                else{
+                    m.score = m.score + temp;
                 }
                 continue;
             }
@@ -985,14 +999,14 @@ letter_value['*'] = 0;
     }
     ll.toString();
     // Move move;
-    // move.wordSoFar = "tix";
-    // move.x = 5;
-    // move.y = 11;
-    // move.direction = "down";
+    // move.wordSoFar = "lipo";
+    // move.x = 13;
+    // move.y = 10;
+    // move.direction = "right";
     // move.score = 1;
-    // Move next = b.checkCrossesDown(move, letter_value);
+    // Move next = b.checkCrossesAcc(move, letter_value);
     // cout << next.score << endl;
-    // next = b.findScoreDown(next, letter_value);
+    // next = b.findScoreAcross(next, letter_value);
     // cout << next.score << endl;
     // cout << "hey" << endl;
     //b.findMoves(answer);
