@@ -37,8 +37,6 @@ class Board{
     private:
     
     int numLetters;
-    //Trie theTrie;
-    //map<char,int> rack;
     
     public:
     map<char,int> rack;
@@ -47,10 +45,6 @@ class Board{
     Board(){
         numLetters = 0;
     }
-    //Board(Piece pieces[][15]){
-      //  numLetters = 0;
-    //    board = pieces;
-    //}
     ~Board(){};
     bool isEmpty(){
         return numLetters == 0;
@@ -58,7 +52,6 @@ class Board{
 
     
     int findMoves(Move* answer, int i){
-        //Move answer[225];
         int index = 0;
         Move a;
         a.direction = "right";
@@ -420,7 +413,6 @@ class Board{
             return move;
         }
         m.score = 0;
-        //cout << m.score << endl;
             for (int j = m.y, i = m.x, k = 0 ; j < (m.y + m.wordSoFar.size()); j++, k++){
             
             shouldDouble = false;
@@ -430,7 +422,6 @@ class Board{
                 continue;
             }
             int newI = i;
-            //cout << "here" << newI << endl;
             string newWord = "";
             newI--;
             while (newI >= 0 && (board[newI][j].theChar >= 97 &&
@@ -446,35 +437,29 @@ class Board{
                 board[newI][j].theChar <= 122){
                     newWord = newWord + board[newI][j].theChar;
                     temp = temp + (board[newI][j].letterProp * map.find(newWord.at(newWord.size() - 1))->second);
-                    //cout << m.score << endl;
+                    
                     if (board[newI][j].wordProp == 2){
                         shouldDouble = true;
-                        //temp = temp * 2;
                     }
                     if (board[newI][j].wordProp == 3){
                         shouldTriple = true;
-                        //temp = temp * 3;
                     }
                     newI++;
                     newVar++;
-                    //m.score = m.score + temp;
                     continue;
                 }
                     else {
                         newWord = newWord + m.wordSoFar.at(j - m.y);
                     temp = temp + (board[newI][j].letterProp * map.find(newWord.at(newWord.size() - 1))->second);
-                    //cout << m.score << endl;
+                    
                     if (board[newI][j].wordProp == 2){
                         shouldDouble = true;
-                        //temp = temp * 2;
                     }
                     if (board[newI][j].wordProp == 3){
                         shouldTriple = true;
-                        //temp = temp * 3;
                     }
                     newI++;
                     newVar++;
-                    //m.score = m.score + temp;
                     continue;
                     }
                 }
@@ -482,7 +467,7 @@ class Board{
                 board[newI][j].theChar <= 122){
                     newWord = newWord + board[newI][j].theChar;
                     temp = temp + (board[newI][j].letterProp * map.find(newWord.at(newWord.size() - 1))->second);
-                    //cout << m.score << endl;
+                    
                     if (board[newI][j].wordProp == 2){
                         shouldDouble = true;
                     }
@@ -496,15 +481,12 @@ class Board{
                     break;
                 }
             }
-            //cout << newWord << endl;
             if (newWord.size() == 1){
                 
                 continue;
             }
             else if (theTrie.hasWord(&*newWord.begin(), newWord.size())){
-                //cout << "hey " << m.score << endl;
                 if (shouldDouble == true){
-                    //cout << m.score << endl;
                     temp = temp * 2;
                     m.score = m.score + temp;
                     
@@ -515,15 +497,12 @@ class Board{
                     
                 }
                 else {
-                    //cout << "here" << endl;
                     m.score = m.score + temp;
                 }
                 continue;
             }
             else {
-                //cout << m.score << endl;
                 m.score = -1;
-                //cout << m.score << endl;
                 move = m;
                 return move;
             }
@@ -541,7 +520,6 @@ class Board{
             return move;
         }
         m.score = 0;
-        //cout << m.score << endl;
             for (int j = m.y, i = m.x, k = 0 ; i < (m.x + m.wordSoFar.size()); i++, k++){
             shouldDouble = false;
             shouldTriple = false;
@@ -550,7 +528,6 @@ class Board{
                 continue;
             }
             int newJ = j;
-            //cout << "here" << newI << endl;
             string newWord = "";
             newJ--;
             while (newJ >= 0 && (board[i][newJ].theChar >= 97 &&
@@ -566,36 +543,30 @@ class Board{
                 board[i][newJ].theChar <= 122){
                     newWord = newWord + board[i][newJ].theChar;
                     temp = temp + (board[i][newJ].letterProp * map.find(newWord.at(newWord.size() - 1))->second);
-                    //cout << m.score << endl;
+                    
                     if (board[i][newJ].wordProp == 2){
                         shouldDouble = true;
-                        //temp = temp * 2;
                     }
                     if (board[i][newJ].wordProp == 3){
                         shouldTriple = true;
-                        //temp = temp * 3;
                     }
                     newJ++;
                     newVar++;
                     
-                    //m.score = m.score + temp;
                     continue;
                 }
                     else {
                         newWord = newWord + m.wordSoFar.at(i - m.x);
                     temp = temp + (board[i][newJ].letterProp * map.find(newWord.at(newWord.size() - 1))->second);
-                    //cout << m.score << endl;
+                    
                     if (board[i][newJ].wordProp == 2){
                         shouldDouble = true;
-                        //temp = temp * 2;
                     }
                     if (board[i][newJ].wordProp == 3){
                         shouldTriple = true;
-                        //temp = temp * 3;
                     }
                     newJ++;
                     newVar++;
-                    //m.score = m.score + temp;
                     continue;
                     }
                 }
@@ -603,7 +574,7 @@ class Board{
                 board[i][newJ].theChar <= 122){
                     newWord = newWord + board[i][newJ].theChar;
                     temp = temp + (board[i][newJ].letterProp * map.find(newWord.at(newWord.size() - 1))->second);
-                    //cout << m.score << endl;
+                    
                     if (board[i][newJ].wordProp == 2){
                         shouldDouble = true;
                     }
@@ -617,9 +588,7 @@ class Board{
                     break;
                 }
             }
-            //cout << newWord << endl;
             if (newWord.size() == 1){
-                //m.score = m.score - temp;
                 continue;
             }
             else if (theTrie.hasWord(&*newWord.begin(), newWord.size())){
@@ -627,12 +596,10 @@ class Board{
                     
                     temp = temp * 2;
                     m.score = m.score + temp;
-                    //cout << m.score << endl;
                 }
                 if (shouldTriple == true){
                     temp = temp * 3;
                     m.score = m.score + temp;
-                    //cout << m.score << endl;
                 }
                 else{
                     m.score = m.score + temp;
@@ -640,9 +607,7 @@ class Board{
                 continue;
             }
             else {
-                //cout << m.score << endl;
                 m.score = -1;
-                //cout << m.score << endl;
                 move = m;
                 return move;
             }
@@ -651,6 +616,99 @@ class Board{
             return move;
     }
     
+    void wholeRight(LinkedList &ll, map<char,int> letter_value){
+        string temp = "";
+        for (int k = 0; k < 15; k++){
+        Move answer[50];
+        int z = findMoves(answer, k);
+        for (int m = 0; m < z; m++){
+            string s = answer[m].wordSoFar;
+            for (int n = 0; n < s.size(); n++){
+                char ac = s.at(n);
+                if (rack.find(ac) == rack.end()){
+                    rack.insert(std::pair<char,int>(ac, 1));
+                }
+                else{
+                    rack.find(ac)->second = rack.find(ac)->second + 1;
+            }
+            }
+            vector<string> results;
+            theTrie.getRackWords(temp, rack, results);
+            for(vector<string>::iterator it = results.begin(); it!= results.end(); it++){
+                Move m = isValid(answer, z, *it);
+                if (m.score == -1){
+                    continue;
+                }
+                m = checkCrossesAcc(m, letter_value);
+                m = findScoreAcross(m, letter_value);
+                if (m.score != -1){
+                    if (m.wordSoFar == "retax"){
+                        
+                    }
+                    ll.insert(m.wordSoFar, m.score, m.y + 1, m.x + 1, m.direction);
+                }
+        }
+          for (int p = 0; p < s.size(); p++){
+              char aa = s.at(p);
+              if (rack.find(aa)->second == 1){
+                  rack.erase(aa);
+              }
+              else {
+                  int need = rack.find(aa)->second - 1;
+                  rack.erase(aa);
+                  rack.insert(std::pair<char,int>(aa, need));
+              }
+          } 
+        }
+        
+    }
+    
+    }
+    
+    void wholeDown(LinkedList &ll, map<char,int> letter_value){
+        string temp = "";
+        for (int q = 0; q < 15; q++){
+        Move answers[50];
+        int y = findMovesDown(answers, q);
+        for (int r = 0; r < y; r++){
+            string t = answers[r].wordSoFar;
+            for (int u = 0; u < t.size(); u++){
+                char ab = t.at(u);
+                if (rack.find(ab) == rack.end()){
+                    rack.insert(std::pair<char,int>(ab, 1));
+                }
+                else{
+                    rack.find(ab)->second = rack.find(ab)->second + 1;
+            }
+            }
+            vector<string> results;
+            theTrie.getRackWords(temp, rack, results);
+            for(vector<string>::iterator it = results.begin(); it!= results.end(); it++){
+                Move mv = isValid(answers, y, *it);
+                if (mv.score == -1){
+                    continue;
+                }
+                mv = checkCrossesDown(mv, letter_value);
+                mv = findScoreDown(mv, letter_value);
+                if (mv.score != -1){
+                    ll.insert(mv.wordSoFar, mv.score, mv.y + 1, mv.x + 1, mv.direction);
+                }
+        }
+          for (int v = 0; v < t.size(); v++){
+              char abc = t.at(v);
+              if (rack.find(abc)->second == 1){
+                  rack.erase(abc);
+              }
+              else {
+                  int need = rack.find(abc)->second - 1;
+                  rack.erase(abc);
+                  rack.insert(std::pair<char,int>(abc, need));
+              }
+          } 
+        }
+        
+    }
+    }
     
     
 };
@@ -751,114 +809,36 @@ letter_value['*'] = 0;
     b.theTrie = root;
     LinkedList ll;
     
-    for (int k = 0; k < 15; k++){
-        Move answer[50];
-        int z = b.findMoves(answer, k);
-        for (int m = 0; m < z; m++){
-            string s = answer[m].wordSoFar;
-            for (int n = 0; n < s.size(); n++){
-                char ac = s.at(n);
-                if (b.rack.find(ac) == b.rack.end()){
-                    b.rack.insert(std::pair<char,int>(ac, 1));
-                }
-                else{
-                    b.rack.find(ac)->second = b.rack.find(ac)->second + 1;
-            }
-            }
-            vector<string> results;
-            b.theTrie.getRackWords(temp, b.rack, results);
-            for(vector<string>::iterator it = results.begin(); it!= results.end(); it++){
-                Move m = b.isValid(answer, z, *it);
-                if (m.score == -1){
-                    continue;
-                }
-                //cout << "across" << m.score << endl;
-                //cout << "across" << m.score << endl;
-                m = b.checkCrossesAcc(m, letter_value);
-                //cout << "across" << m.score << endl;
-                m = b.findScoreAcross(m, letter_value);
-                //cout << "across" << m.score << endl;
-                if (m.score != -1){
-                    ll.insert(m.wordSoFar, m.score, m.y + 1, m.x + 1, m.direction);
-                }
-        }
-          for (int p = 0; p < s.size(); p++){
-              char aa = s.at(p);
-              if (b.rack.find(aa)->second == 1){
-                  b.rack.erase(aa);
-              }
-              else {
-                  b.rack.find(aa)->second = b.rack.find(aa)->second - 1;
-              }
-          } 
-        }
-        
-    }
-    
-    for (int q = 0; q < 15; q++){
-        Move answers[50];
-        int y = b.findMovesDown(answers, q);
-        for (int r = 0; r < y; r++){
-            string t = answers[r].wordSoFar;
-            for (int u = 0; u < t.size(); u++){
-                char ab = t.at(u);
-                if (b.rack.find(ab) == b.rack.end()){
-                    b.rack.insert(std::pair<char,int>(ab, 1));
-                }
-                else{
-                    b.rack.find(ab)->second = b.rack.find(ab)->second + 1;
-            }
-            }
-            vector<string> results;
-            b.theTrie.getRackWords(temp, b.rack, results);
-            for(vector<string>::iterator it = results.begin(); it!= results.end(); it++){
-                Move mv = b.isValid(answers, y, *it);
-                if (mv.score == -1){
-                    continue;
-                }
-                //cout << "mv.score " << mv.score << endl;
-                //cout << "mv.word" << mv.wordSoFar << endl;
-                mv = b.checkCrossesDown(mv, letter_value);
-                //cout << "mv.score " << mv.score << endl;
-                mv = b.findScoreDown(mv, letter_value);
-                //cout << "mv.score " << mv.score << endl;
-                if (mv.score != -1){
-                    //cout << "mv.wordSoFar " << mv.wordSoFar << endl;
-                    //cout << "mv.score " << mv.score << endl;
-                    //cout << "mv.x " << mv.x << endl;
-                    //cout << "mv.y " << mv.y << endl;
-                    //cout << "mv.direction " << mv.direction << endl;
-                    ll.insert(mv.wordSoFar, mv.score, mv.y + 1, mv.x + 1, mv.direction);
-                }
-        }
-          for (int v = 0; v < t.size(); v++){
-              char abc = t.at(v);
-              if (b.rack.find(abc)->second == 1){
-                  b.rack.erase(abc);
-              }
-              else {
-                  b.rack.find(abc)->second = b.rack.find(abc)->second - 1;
-              }
-          } 
-        }
-        
-    }
+    //if (b.rack.find('*') == b.rack.end()){
+    b.wholeRight(ll, letter_value);
+    b.wholeDown(ll, letter_value);
     ll.toString();
-    // Move move;
-    // move.wordSoFar = "lipo";
-    // move.x = 13;
-    // move.y = 10;
-    // move.direction = "right";
-    // move.score = 1;
-    // Move next = b.checkCrossesAcc(move, letter_value);
-    // cout << next.score << endl;
-    // next = b.findScoreAcross(next, letter_value);
-    // cout << next.score << endl;
-    // cout << "hey" << endl;
-    //b.findMoves(answer);
-    //b.findMovesDown(answers);
-    //cout << answer[2].leftSpace << endl;
-    //Move m = b.isValid(answers, 1, "b");
-    //cout << m.score << endl;
+    //}
+    
+    // else{
+    //     b.rack.erase('*');
+    //     for (char let = 'a'; let <= 'z'; let++){
+    //         if (b.rack.find(let) == b.rack.end()){
+    //             //cout << "before insert " << b.rack.size() << endl;
+    //             b.rack.insert(std::pair<char,int>(let, 1));
+    //             b.wholeRight(ll, letter_value);
+    //             b.wholeDown(ll, letter_value);
+    //             b.rack.erase(let);
+    //             //cout << "after erase " << b.rack.size() << endl;
+    //         }
+    //         else{
+    //             //cout << "before insert " << b.rack.size() << endl;
+    //             int need = b.rack.find(let)->second + 1;
+    //             b.rack.erase(let);
+    //             b.rack.insert(std::pair<char,int>(let, need));
+    //             b.wholeRight(ll, letter_value);
+    //             b.wholeDown(ll, letter_value);
+    //             b.rack.erase(let);
+    //             b.rack.insert(std::pair<char,int>(let, need - 1));
+    //             //cout << "after erase " << b.rack.size() << endl;
+    //         }
+    //     }
+    //     ll.toString();
+    // }
     
 }
