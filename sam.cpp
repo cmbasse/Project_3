@@ -411,130 +411,6 @@ class Board{
             return move;
     }
     
-    // Move checkCrossesAcc(Move m, map<char,int> map){
-    //     Move move;
-    //     bool shouldDouble;
-    //     bool shouldTriple;
-    //     if (m.score == -1){
-    //         move = m;
-    //         return move;
-    //     }
-    //     m.score = 0;
-    //         for (int j = m.y, i = m.x, k = 0 ; j < (m.y + m.wordSoFar.size()); j++, k++){
-    //         int temp = 0;
-    //         shouldDouble = false;
-    //         shouldTriple = false;
-    //         if (board[i][j].theChar >= 97 && board[i][j].theChar <= 122){
-    //             continue;
-    //         }
-    //         int newI = i;
-    //         //cout << "here" << newI << endl;
-    //         string newWord = "";
-    //         newI--;
-    //         while (newI >= 0 && (board[newI][j].theChar >= 97 &&
-    //             board[newI][j].theChar <= 122)){
-    //             newI--;
-    //         }
-    //         newI++;
-    //         if (newI == i){
-    //             continue;
-    //         }
-    //         // if (newI == i){
-    //         //     if (newI != 14){
-    //         //     if (board[newI + 1][j].theChar >= 97 &&
-    //         //     board[newI + 1][j].theChar <= 122 ){
-                    
-    //         //     }
-    //         //     else continue;
-    //         //     }
-    //         //     else continue;
-    //         // }
-    //         //cout << "here" << newI << endl;
-    //         int newVar = 0;
-    //         while (newI < 15){
-    //             if (newI == m.x){
-    //                 if (board[newI][j].theChar >= 97 &&
-    //             board[newI][j].theChar <= 122){
-    //                 newWord = newWord + board[newI][j].theChar;
-    //                 //cout << "newWord - 1" << newWord.size() - 1 << endl;
-    //                 temp = temp + (board[newI][j].letterProp * map.find(newWord.at(newWord.size() - 1))->second);
-    //                 if (board[newI][j].wordProp == 2){
-    //                     shouldDouble = true;
-    //                     temp = temp * 2;
-    //                 }
-    //                 if (board[newI][j].wordProp == 3){
-    //                     shouldTriple = true;
-    //                     temp = temp * 3;
-    //                 }
-    //                 newI++;
-    //                 newVar++;
-    //                 m.score = temp + m.score;
-    //                 continue;
-    //             }
-    //                 else {
-    //                     //cout << "j - m.y " << j - m.y << endl;
-    //                     newWord = newWord + m.wordSoFar.at(j - m.y);
-    //                 temp = temp + (board[newI][j].letterProp * map.find(newWord.at(newWord.size() - 1))->second);
-    //                 if (board[newI][j].wordProp == 2){
-    //                     shouldDouble = true;
-    //                     temp = temp * 2;
-    //                 }
-    //                 if (board[newI][j].wordProp == 3){
-    //                     shouldTriple = true;
-    //                     temp = temp * 3;
-    //                 }
-    //                 newI++;
-    //                 newVar++;
-    //                 m.score = temp + m.score;
-    //                 continue;
-    //                 }
-    //             }
-    //             if (board[newI][j].theChar >= 97 &&
-    //             board[newI][j].theChar <= 122){
-    //                 newWord = newWord + board[newI][j].theChar;
-    //                 temp = temp + (board[newI][j].letterProp * map.find(newWord.at(newWord.size() - 1))->second);
-    //                 if (board[newI][j].wordProp == 2){
-    //                     shouldDouble = true;
-    //                     temp = temp * 2;
-    //                 }
-    //                 if (board[newI][j].wordProp == 3){
-    //                     shouldTriple = true;
-    //                     temp = temp * 3;
-    //                 }
-    //                 newI++;
-    //                 newVar++;
-    //             }
-    //             else{
-    //                 break;
-    //             }
-    //         }
-    //         //cout << newWord << endl;
-    //         if (newWord.size() == 1){
-    //             temp = temp - (board[newI][j].letterProp * map.find(newWord.at(newWord.size() - 1))->second);
-    //             //m.score = m.score + temp;
-    //             continue;
-    //         }
-    //         else if (theTrie.hasWord(&*newWord.begin(), newWord.size())){
-    //             if (shouldDouble == true){
-    //                 temp = temp * 2;
-    //             }
-    //             if (shouldTriple == true){
-    //                 temp = temp * 3;
-    //             }
-    //             m.score = temp + m.score;
-    //             continue;
-    //         }
-    //         else {
-    //             //cout << m.score << endl;
-    //             m.score = -1;
-    //             move = m;
-    //             return move;
-    //         }
-    //         }
-    //         move = m;
-    //         return move;
-    // }
-    
         Move checkCrossesAcc(Move m, map<char,int> map){
         Move move;
         bool shouldDouble;
@@ -562,21 +438,7 @@ class Board{
                 newI--;
             }
             newI++;
-            //cout << "newJ " << newJ << endl;
-            // if (newI == i){
-            //     continue;
-            // }
-            // if (newJ == j){
-            //     if (newJ != 14){
-            //     if (board[i][newJ + 1].theChar >= 97 &&
-            //     board[i][newJ + 1].theChar <= 122 ){
-                    
-            //     }
-            //     else continue;
-            //     }
-            //     else continue;
-            // }
-            //cout << "here" << newI << endl;
+            
             int newVar = 0;
             while (newI < 15){
                 if (newI == m.x){
@@ -636,8 +498,7 @@ class Board{
             }
             //cout << newWord << endl;
             if (newWord.size() == 1){
-                //cout << "heyyy" << endl;
-                //m.score = m.score - temp;
+                
                 continue;
             }
             else if (theTrie.hasWord(&*newWord.begin(), newWord.size())){
@@ -646,13 +507,12 @@ class Board{
                     //cout << m.score << endl;
                     temp = temp * 2;
                     m.score = m.score + temp;
-                    //cout << "here" << endl;
-                    //cout << m.score << endl;
+                    
                 }
                 else if (shouldTriple == true){
                     temp = temp * 3;
                     m.score = m.score + temp;
-                    //cout << m.score << endl;
+                    
                 }
                 else {
                     //cout << "here" << endl;
@@ -698,21 +558,7 @@ class Board{
                 newJ--;
             }
             newJ++;
-            //cout << "newJ " << newJ << endl;
-            // if (newJ == j){
-            //     continue;
-            // }
-            // if (newJ == j){
-            //     if (newJ != 14){
-            //     if (board[i][newJ + 1].theChar >= 97 &&
-            //     board[i][newJ + 1].theChar <= 122 ){
-                    
-            //     }
-            //     else continue;
-            //     }
-            //     else continue;
-            // }
-            //cout << "here" << newI << endl;
+           
             int newVar = 0;
             while (newJ < 15){
                 if (newJ == m.y){
@@ -890,11 +736,7 @@ letter_value['*'] = 0;
     }
     infile.close();
     
-    // for (int i = 0; i < 15; i++){
-    //     for (int j = 0; j < 15; j++){
-    //         cout << b.board[i][j].theChar << endl;
-    //     }
-    // }
+    
     
     Trie root;
     string temp = "";
@@ -937,7 +779,7 @@ letter_value['*'] = 0;
                 m = b.findScoreAcross(m, letter_value);
                 //cout << "across" << m.score << endl;
                 if (m.score != -1){
-                    ll.insert(m.wordSoFar, m.score, m.x, m.y, m.direction);
+                    ll.insert(m.wordSoFar, m.score, m.y + 1, m.x + 1, m.direction);
                 }
         }
           for (int p = 0; p < s.size(); p++){
@@ -986,7 +828,7 @@ letter_value['*'] = 0;
                     //cout << "mv.x " << mv.x << endl;
                     //cout << "mv.y " << mv.y << endl;
                     //cout << "mv.direction " << mv.direction << endl;
-                    ll.insert(mv.wordSoFar, mv.score, mv.x, mv.y, mv.direction);
+                    ll.insert(mv.wordSoFar, mv.score, mv.y + 1, mv.x + 1, mv.direction);
                 }
         }
           for (int v = 0; v < t.size(); v++){
