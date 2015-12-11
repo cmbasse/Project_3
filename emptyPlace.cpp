@@ -142,41 +142,41 @@ int main(){
     
     LinkedList moveList = getEmptyMoves(temp, rack, results, 0);
     
-    for(auto& itr : rack)  {
-        if (itr.first == '*'){
-            wildcard = true;
-        }
-    }
+    // for(auto& itr : rack)  {
+    //     if (itr.first == '*'){
+    //         wildcard = true;
+    //     }
+    // }
     
-    if(wildcard){
-        map<char,int>::iterator ites;
-        ites = rack.find('*');
-        rack.erase(ites);
+    // if(wildcard){
+    //     map<char,int>::iterator ites;
+    //     ites = rack.find('*');
+    //     rack.erase(ites);
         
-        int pt = 0;
-        for(auto& itm : letter_value)  {
-            char tmp = itm.first;
-            pt = letter_value[tmp];
+    //     int pt = 0;
+    //     for(auto& itm : letter_value)  {
+    //         char tmp = itm.first;
+    //         pt = letter_value[tmp];
             
-            map<char,int>::iterator itb;
-            itb = rack.find(tmp);
-            if (itb != rack.end()){
-                rack[tmp] += 1;
-            }else{
-                rack[tmp] = 1;
-            }
+    //         map<char,int>::iterator itb;
+    //         itb = rack.find(tmp);
+    //         if (itb != rack.end()){
+    //             rack[tmp] += 1;
+    //         }else{
+    //             rack[tmp] = 1;
+    //         }
             
-            LinkedList moveList = getEmptyMoves(temp, rack, results, pt);
+    //         LinkedList moveList = getEmptyMoves(temp, rack, results, pt);
             
-            if(rack[tmp] == 1){
-                map<char,int>::iterator ite;
-                ite = rack.find(tmp);
-                rack.erase(ite);
-            }else{
-                rack[tmp] -= 1;
-            }
-        }
-    }
+    //         if(rack[tmp] == 1){
+    //             map<char,int>::iterator ite;
+    //             ite = rack.find(tmp);
+    //             rack.erase(ite);
+    //         }else{
+    //             rack[tmp] -= 1;
+    //         }
+    //     }
+    // }
     
     
     moveList.toString();
